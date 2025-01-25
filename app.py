@@ -29,6 +29,6 @@ if scatter_button:
     st.write('creacion de un grafico de dispersion')
 
     # creacion de un grafico de dispersion
-    fig = px.histogram(car_data, x='odometer', y='precio',
-                       tittle='odometer vs precio',
-                       labels={"odometer": "Kilometraje", "price": "Precio"})
+    fig = px.scatter(car_data, x='odometer', y='precio',
+                     tittle='odometer vs precio',
+                     labels={"odometer": "Kilometraje", "price": "Precio"})
