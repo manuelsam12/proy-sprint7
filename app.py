@@ -16,7 +16,7 @@ if hist_button:  # al hacer clic en el botón
     # crear un histograma
     fig = px.histogram(car_data, x="odometer",
                        title="Distribución de Odómetro",
-                       labels={"odometer": "Kilometraje"},
+                       labels={"odometer": "Kilometraje", "price": "Precio"},
                        nbins=25)
 
     # mostrar un gráfico Plotly interactivo
@@ -29,6 +29,6 @@ if scatter_button:
     st.write('creacion de un grafico de dispersion')
 
     # creacion de un grafico de dispersion
-    fig = px.histogram(car_data, x="odometer", y='precio',
+    fig = px.histogram(car_data, x='odometer', y='precio',
                        tittle='odometer vs precio',
                        labels={"odometer": "Kilometraje", "price": "Precio"})
