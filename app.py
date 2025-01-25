@@ -2,33 +2,42 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
-car_data = pd.read_csv('vehicles_us.csv')  # leer los datos
-hist_button = st.button('Construir histograma')  # crear un botón
+# Leer los datos
+# Asegúrate de que el archivo esté en el directorio correcto
+car_data = pd.read_csv('vehicles_us.csv')
 
+# Títulos y encabezados
 st.title('Análisis de Vehículos de Estados Unidos')
-st.header('Histograma Interactivo')
+st.header('Visualización Interactiva de Datos')
 
-if hist_button:  # al hacer clic en el botón
-    # escribir un mensaje
+# Botón para construir el histograma
+if st.button('Construir histograma'):
+    # Escribir un mensaje
     st.write(
         'Creación de un histograma para el conjunto de datos de anuncios de venta de coches')
 
-    # crear un histograma
-    fig = px.histogram(car_data, x="odometer",
-                       title="Distribución de Odómetro",
-                       labels={"odometer": "Kilometraje", "price": "Precio"},
-                       nbins=25)
+    # Crear un histograma con Plotly
+    fig_hist = px.histogram(car_data,
+                            x="odometer",
+                            title="Distribución de Odómetro",
+                            labels={"odometer": "Kilometraje",
+                                    "price": "Precio"},
+                            nbins=25)
 
-    # mostrar un gráfico Plotly interactivo
-    st.plotly_chart(fig, use_container_width=True)
+    # Mostrar el gráfico en Streamlit
+    st.plotly_chart(fig_hist, use_container_width=True)
 
-# boton para el grafico de dispersion
-scatter_button = st.button('Construir gráfico de dispersión')
+# Botón para construir el gráfico de dispersión
+if st.button('Construir gráfico de dispersión'):
+    # Escribir un mensaje
+    st.write('Creación de un gráfico de dispersión para Kilometraje vs Precio')
 
-if scatter_button:
-    st.write('creacion de un grafico de dispersion')
+    # Crear un gráfico de dispersión con Plotly
+    fig_scatter = px.scatter(car_data,
+                             x="odometer",
+                             y="price",
+                             title="Kilometraje vs Precio",
+                             labels={"odometer": "Kilometraje", "price": "Precio"})
 
-    # creacion de un grafico de dispersion
-    fig = px.scatter(car_data, x='odometer',
-                     tittle='odometer vs precio',
-                     labels={"odometer": "Kilometraje", "price": "Precio"})
+    # Mostrar el gráfico en Streamlit
+    st.plotly_chart(fig_scatter, use_container_width=True)
